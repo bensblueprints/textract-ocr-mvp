@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self';" />
+<title>Textract</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <nav class="sidenav">
+      <div class="brand">
+        <span class="brand-mark">T</span>
+        <span class="brand-name">Textract</span>
+      </div>
+      <button class="nav-btn active" data-view="home">Home</button>
+      <button class="nav-btn" data-view="batch">Batch</button>
+      <button class="nav-btn" data-view="settings">Settings</button>
+      <div class="nav-spacer"></div>
+      <div class="hotkey-pill" id="hotkeyPill">Ctrl+Shift+T &middot; region capture</div>
+    </nav>
+
+    <main class="content">
+      <!-- HOME / DROP ZONE -->
+      <section class="view" id="view-home">
+        <div class="dropzone" id="dropzone">
+          <div class="dropzone-inner">
+            <div class="dz-icon">&#8595;</div>
+            <h1>Drop images or PDFs</h1>
+            <p>PNG, JPG, WEBP, BMP, TIFF or PDF &mdash; processed 100% on this machine.</p>
+            <div class="dz-actions">
+              <button class="btn primary" id="btnBrowseFiles">Browse files</button>
+              <button class="btn" id="btnBrowseFolder">Browse folder (batch)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="history-strip">
+          <div class="history-head">
+            <h3>Recent</h3>
+            <button class="link-btn" id="btnClearHistory">Clear</button>
+          </div>
+          <div class="history-list" id="historyList"><div class="empty">No history yet.</div></div>
+        </div>
+      </section>
+
+      <!-- RESULT VIEW -->
+      <section class="view hidden" id="view-result">
+        <div class="result-toolbar">
+          <button class="btn ghost" id="btnBackHome">&larr; Back</button>
+          <div class="spacer"></div>
+          <label class="lang-select">
+            Language
+            <select id="langSelect"></select>
+          </label>
+          <button class="btn" id="btnPreprocessToggle">Preprocessing: Off</button>
+          <button class="btn" id="btnRerun">Re-run OCR</button>
+          <button class="btn" id="btnCopyAll">Copy all</button>
+          <button class="btn" id="btnExportTxt">Export .txt</button>
+          <button class="btn primary" id="btnExportPdf">Export searchable PDF</button>
+        </div>
+        <div class="result-body">
+          <aside class="page-rail" id="pageRail"></aside>
+          <div class="text-pane">
+            <div class="confidence-chip" id="confidenceChip">confidence: -</div>
+            <textarea id="textPane" spellcheck="false" placeholder="Extracted text will appear here..."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- BATCH VIEW -->
+      <section class="view hidden" id="view-batch">
+        <div class="batch-header">
+          <h2>Batch folder OCR</h2>
+          <div class="batch-controls">
+            <label class="checkbox"><input type="checkbox" id="batchRecursive" checked /> Recursive</label>
+            <button class="btn" id="btnPickOutputDir">Output dir&hellip;</button>
+            <span class="muted" id="outputDirLabel">Alongside source files</span>
+            <button class="btn primary" id="btnPickBatchFolder">Choose folder</button>
+          </div>
+        </div>
+        <table class="batch-table">
+          <thead><tr><th>File</th><th>Status</th></tr></thead>
+          <tbody id="batchTableBody"></tbody>
+        </table>
+        <div class="batch-summary" id="batchSummary"></div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="view hidden" id="view-settings">
+        <h2>Settings</h2>
+
+        <div class="settings-card">
+          <h3>Global hotkey</h3>
+          <p class="muted">Default <code>Ctrl+Shift+T</code> opens a region-capture overlay from anywhere, even minimized to tray.</p>
+          <div class="hotkey-row">
+            <input type="text" id="hotkeyInput" value="CommandOrControl+Shift+T" />
+            <button class="btn" id="btnSaveHotkey">Save</button>
+            <span id="hotkeyStatus" class="muted"></span>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <h3>Languages</h3>
+          <p class="muted">English is bundled. Other languages download once from tessdata_fast (the only network call Textract ever makes) &mdash; you'll see progress below.</p>
+          <div id="langManager" class="lang-manager"></div>
+        </div>
+
+        <div class="settings-card">
+          <h3>Preprocessing</h3>
+          <label class="checkbox"><input type="checkbox" id="settingPreprocess" /> Grayscale + threshold low-contrast scans by default</label>
+        </div>
+
+        <div class="settings-card">
+          <h3>Output</h3>
+          <label class="checkbox"><input type="checkbox" id="settingSearchablePdfDefault" checked /> Default export format: searchable PDF (otherwise plain .txt)</label>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>

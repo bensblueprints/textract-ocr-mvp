@@ -1,0 +1,66 @@
+{
+  "name": "textract",
+  "productName": "Textract",
+  "version": "1.0.0",
+  "description": "100% offline desktop OCR — drag in images or PDFs, get selectable text, export searchable PDFs, batch whole folders, and snap a screenshot region to text with a global hotkey. Pay once, own it forever.",
+  "main": "src/main.js",
+  "author": "Ben (bensblueprints)",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "test": "node test/smoke.js",
+    "dist": "electron-builder --win nsis"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^4.9.155",
+    "tesseract.js": "^5.1.1",
+    "tesseract.js-core": "^5.1.1"
+  },
+  "devDependencies": {
+    "@napi-rs/canvas": "^0.1.65",
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8",
+    "pdf-parse": "^1.1.1",
+    "sharp": "^0.33.5"
+  },
+  "build": {
+    "appId": "co.advancedmarketing.textract",
+    "productName": "Textract",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/tessdata",
+        "to": "tessdata"
+      },
+      {
+        "from": "node_modules/tesseract.js/dist/worker.min.js",
+        "to": "tesseract/worker.min.js"
+      },
+      {
+        "from": "node_modules/tesseract.js-core",
+        "to": "tesseract/core"
+      }
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "deleteAppDataOnUninstall": false
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.productivity"
+    }
+  }
+}
