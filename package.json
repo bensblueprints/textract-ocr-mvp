@@ -61,6 +61,10 @@
         "dmg"
       ],
       "category": "public.app-category.productivity"
-    }
+    },
+    "asarUnpack": [
+      "node_modules/tesseract.js/**",
+      "node_modules/tesseract.js-core/**"
+    ]
   }
 }
