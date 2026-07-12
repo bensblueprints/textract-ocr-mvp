@@ -25,7 +25,7 @@ Everything runs **100% locally** with [tesseract.js](https://github.com/naptha/t
 
 Don't want to install Node and build from source? Grab the packaged Windows installer — pay once, own it forever:
 
-**[Get Textract on Whop →](https://whop.com/onetime-suite)**
+**[Get Textract on Whop →](https://whop.com/benjisaiempire/textract)**
 
 ## Quick start (from source)
 
