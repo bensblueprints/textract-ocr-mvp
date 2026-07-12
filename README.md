@@ -90,3 +90,7 @@ launch-kit/            # Product Hunt, ad copy, and go-to-market notes
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+## macOS build
+
+See [MAC-BUILD.md](MAC-BUILD.md). Quickest path: GitHub **Actions** tab -> run the **Mac Build** (`mac-build.yml`) workflow to get a downloadable `.dmg` (unsigned - right-click -> Open on first launch).
