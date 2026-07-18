@@ -1,5 +1,9 @@
 # Textract
 
+## Demo
+
+VIDEO-PLACEHOLDER
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-8f7bff.svg)](LICENSE)
 
 **Every scan, every screenshot, into text. Offline. Once.** Drag in images or PDFs, get selectable text per page, export searchable PDFs, batch whole folders, and snap a screenshot region to text with a global hotkey — all running 100% on your machine.
