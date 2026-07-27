@@ -12,6 +12,7 @@ const pdfPages = require('./core/pdfPages');
 const batch = require('./core/batch');
 const langManager = require('./core/langManager');
 const store = require('./core/store');
+const { gateLicense, registerLicenseIpc } = require('./license-gate');
 
 let mainWindow = null;
 let overlayWindow = null;
@@ -78,7 +79,9 @@ function registerHotkey(accel) {
   return { ok, registered: ok };
 }
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
+  if (!(await gateLicense())) return; // quit already requested
+  registerLicenseIpc();
   createMainWindow();
   createTray();
   const settings = store.getSettings();
