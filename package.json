@@ -1,7 +1,7 @@
 {
   "name": "textract",
   "productName": "Textract",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "100% offline desktop OCR — drag in images or PDFs, get selectable text, export searchable PDFs, batch whole folders, and snap a screenshot region to text with a global hotkey. Pay once, own it forever.",
   "main": "src/main.js",
   "author": "Ben (bensblueprints)",
